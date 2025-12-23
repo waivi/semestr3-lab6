@@ -1,0 +1,46 @@
+подлючение на пользвателя постгрес
+sudo -i -u postgres
+
+запуск интерактивной консоли постгреСКЛ
+psql
+
+создание нового пользователя
+CREATE USER cinema_user WITH PASSWORD 'cinema123';
+
+выход из интерактивной консоли
+\q
+
+увидеть все 9 таблиц
+PGPASSWORD=cinema123 psql -h localhost -U cinema_user -d cinema_db -c "\dt"
+
+# Для таблицы directors
+PGPASSWORD=cinema123 psql -h localhost -U cinema_user -d cinema_db -c "\d directors"
+
+# Для таблицы actors
+PGPASSWORD=cinema123 psql -h localhost -U cinema_user -d cinema_db -c "\d actors"
+
+# Для таблицы films
+PGPASSWORD=cinema123 psql -h localhost -U cinema_user -d cinema_db -c "\d films"
+
+# Просмотреть первые 5 записей из таблицы directors
+PGPASSWORD=cinema123 psql -h localhost -U cinema_user -d cinema_db -c "SELECT * FROM directors LIMIT 5;"
+
+# Просмотреть всё содержимое таблицы actors
+PGPASSWORD=cinema123 psql -h localhost -U cinema_user -d cinema_db -c "SELECT * FROM actors;"
+
+# Подключение к базе данных
+psql -h localhost -U cinema_user -d cinema_db
+
+# Выполнение SQL-скрипта
+\i queries.sql
+
+# Просмотр таблиц
+\dt
+
+# Описание таблицы
+\d films
+
+
+
+вход в бд
+PGPASSWORD=cinema123 psql -h localhost -U cinema_user -d cinema_db
